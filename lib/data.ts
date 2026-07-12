@@ -15,6 +15,7 @@ export interface Exercicio {
   tipo: TipoExercicio;
   dicas: string[];
   historico: RegistroCarga[];
+  imagemUrl?: string;
 }
 
 export interface Treino {
@@ -33,17 +34,38 @@ interface ExercicioInput {
   tipo?: TipoExercicio;
   dicas: string[];
   historico?: RegistroCarga[];
+  imagemUrl?: string;
 }
 
+const GIFS_DISPONIVEIS = new Set([
+  "supino-reto",
+  "supino-inclinado",
+  "crucifixo",
+  "triceps-frances",
+  "triceps-corda",
+  "elevacao-frontal",
+]);
+
 function criarExercicio(treinoId: string, input: ExercicioInput): Exercicio {
+  const slug = slugify(input.nome);
+  const id = `${treinoId}-${slug}`;
+
+  let imagemUrl: string | undefined;
+  if (input.imagemUrl) {
+    imagemUrl = input.imagemUrl;
+  } else if (GIFS_DISPONIVEIS.has(slug)) {
+    imagemUrl = `/exercicios/${slug}.gif`;
+  }
+
   return {
-    id: `${treinoId}-${slugify(input.nome)}`,
+    id,
     nome: input.nome,
     series: input.series,
     repeticoes: input.repeticoes,
     tipo: input.tipo ?? "normal",
     dicas: input.dicas,
     historico: input.historico ?? [],
+    imagemUrl,
   };
 }
 

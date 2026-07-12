@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
@@ -48,8 +49,19 @@ export default async function ExercicioPage({ params }: ExercicioPageProps) {
         backHref={`/treinos/${treino.id}`}
       />
       <main className="mx-auto w-full max-w-2xl flex-1 px-4 py-6 sm:px-6">
-        <div className="flex aspect-video w-full items-center justify-center rounded-2xl bg-[#222222] text-sm text-white/50">
-          Imagem do exercício
+        <div className="relative aspect-video w-full overflow-hidden rounded-2xl bg-[#222222]">
+          {exercicio.imagemUrl ? (
+            <Image
+              src={exercicio.imagemUrl}
+              alt={exercicio.nome}
+              fill
+              className="object-cover"
+            />
+          ) : (
+            <div className="flex h-full items-center justify-center text-sm text-white/50">
+              Imagem do exercício
+            </div>
+          )}
         </div>
 
         <div className="mt-5 flex items-center gap-3">
