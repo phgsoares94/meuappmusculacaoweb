@@ -147,6 +147,7 @@ export const treinos: Treino[] = [
         "Mantenha uma leve flexão nos cotovelos.",
         "Controle a descida do peso, não deixe cair.",
       ],
+      historico: [{ data: "2026-07-06", cargaKg: 8 }],
     },
   ]),
   criarTreino("b", "Treino B", "Costas, Bíceps", "Terça-feira", "3ª", [
@@ -181,15 +182,15 @@ export const treinos: Treino[] = [
       historico: [{ data: "2026-07-09", cargaKg: 32 }],
     },
     {
-      nome: "Puxada Alta",
+      nome: "Pulldown Cross Over",
       series: 3,
       repeticoes: "10-12",
       dicas: [
-        "Use uma pegada mais aberta para variar o estímulo nas costas.",
-        "Puxe a barra até a parte superior do peito.",
-        "Mantenha o tronco levemente inclinado para trás, sem exagero.",
-        "Contraia as costas no final do movimento antes de soltar.",
-        "Controle a volta da barra até o alongamento total das costas.",
+        "Posicione-se de frente para o cabo, com a barra em cruz.",
+        "Puxe os cabos para baixo e para trás, levando os cotovelos para baixo.",
+        "Mantenha o tronco estável, sem balançar.",
+        "Contraia as costas e o peito no final do movimento.",
+        "Controle a volta dos cabos até o alongamento completo.",
       ],
     },
     {
@@ -216,6 +217,7 @@ export const treinos: Treino[] = [
         "Contraia o bíceps no topo do movimento.",
         "Evite usar impulso do ombro para completar a repetição.",
       ],
+      historico: [{ data: "2026-07-09", cargaKg: 8 }],
     },
     {
       nome: "Encolhimento",
