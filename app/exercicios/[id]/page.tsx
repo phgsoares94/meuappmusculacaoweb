@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Header from "@/components/Header";
+import GraficoHistorico from "@/components/GraficoHistorico";
 import { getExercicioById, treinos, type Exercicio } from "@/lib/data";
 
 interface ExercicioPageProps {
@@ -73,6 +74,8 @@ export default async function ExercicioPage({ params }: ExercicioPageProps) {
             ))}
           </ul>
         </div>
+
+        <GraficoHistorico historico={exercicio.historico} />
 
         <Link
           href={`/treinos/${treino.id}`}

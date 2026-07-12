@@ -2,6 +2,11 @@ import { slugify } from "./utils";
 
 export type TipoExercicio = "forca" | "normal" | "finalizador";
 
+export interface RegistroCarga {
+  data: string; // ISO YYYY-MM-DD
+  cargaKg: number;
+}
+
 export interface Exercicio {
   id: string;
   nome: string;
@@ -9,6 +14,7 @@ export interface Exercicio {
   repeticoes: string;
   tipo: TipoExercicio;
   dicas: string[];
+  historico: RegistroCarga[];
 }
 
 export interface Treino {
@@ -26,6 +32,7 @@ interface ExercicioInput {
   repeticoes: string;
   tipo?: TipoExercicio;
   dicas: string[];
+  historico?: RegistroCarga[];
 }
 
 function criarExercicio(treinoId: string, input: ExercicioInput): Exercicio {
@@ -36,6 +43,7 @@ function criarExercicio(treinoId: string, input: ExercicioInput): Exercicio {
     repeticoes: input.repeticoes,
     tipo: input.tipo ?? "normal",
     dicas: input.dicas,
+    historico: input.historico ?? [],
   };
 }
 
@@ -72,6 +80,10 @@ export const treinos: Treino[] = [
         "Controle a descida (2-3s) e empurre com força na subida.",
         "Use um parceiro de apoio (spotter) em cargas próximas ao máximo.",
       ],
+      historico: [
+        { data: "2026-07-06", cargaKg: 15 },
+        { data: "2026-07-06", cargaKg: 10 },
+      ],
     },
     {
       nome: "Supino Inclinado",
@@ -84,6 +96,7 @@ export const treinos: Treino[] = [
         "Mantenha as escápulas retraídas durante todo o movimento.",
         "Não trave os cotovelos com força no topo do movimento.",
       ],
+      historico: [{ data: "2026-07-06", cargaKg: 10 }],
     },
     {
       nome: "Crucifixo",
@@ -108,6 +121,7 @@ export const treinos: Treino[] = [
         "Estenda completamente os braços sem travar bruscamente.",
         "Pode ser feito sentado ou em pé, mantendo o tronco estável.",
       ],
+      historico: [{ data: "2026-07-06", cargaKg: 14 }],
     },
     {
       nome: "Tríceps Corda",
@@ -148,6 +162,10 @@ export const treinos: Treino[] = [
         "Evite balançar o corpo para gerar impulso.",
         "Controle a fase de subida da barra (excêntrica).",
       ],
+      historico: [
+        { data: "2026-07-09", cargaKg: 52 },
+        { data: "2026-07-09", cargaKg: 45 },
+      ],
     },
     {
       nome: "Remada Baixa",
@@ -160,6 +178,7 @@ export const treinos: Treino[] = [
         "Aperte as escápulas no final do movimento.",
         "Mantenha os ombros longe das orelhas.",
       ],
+      historico: [{ data: "2026-07-09", cargaKg: 32 }],
     },
     {
       nome: "Puxada Alta",
@@ -184,6 +203,7 @@ export const treinos: Treino[] = [
         "Não é necessário usar cargas altas — priorize a técnica.",
         "Suba e desça o peso de forma controlada.",
       ],
+      historico: [{ data: "2026-07-09", cargaKg: 14 }],
     },
     {
       nome: "Rosca Scott",
@@ -351,6 +371,20 @@ export const treinos: Treino[] = [
     },
   ]),
 ];
+
+export interface SessaoTreino {
+  data: string; // ISO YYYY-MM-DD
+  treinoId: string;
+}
+
+export const sessoes: SessaoTreino[] = [
+  { data: "2026-07-06", treinoId: "a" },
+  { data: "2026-07-09", treinoId: "b" },
+];
+
+export function getSessaoByData(data: string): SessaoTreino | undefined {
+  return sessoes.find((sessao) => sessao.data === data);
+}
 
 export function getTreinoById(id: string): Treino | undefined {
   return treinos.find((treino) => treino.id === id);

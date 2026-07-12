@@ -2,7 +2,11 @@
   "permissions": {
     "allow": [
       "Bash(node -e ' *)",
-      "Bash(npm run *)"
+      "Bash(npm run *)",
+      "Bash(node -e \"console.log\\(new Date\\(\\).toString\\(\\)\\)\")",
+      "Bash(tasklist //FI \"PID eq 22828\")",
+      "Bash(taskkill //PID 22828 //F)",
+      "Bash(git add *)"
     ]
   }
 }
